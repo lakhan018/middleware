@@ -6,11 +6,31 @@ var log = (req, res, next) => {
   next();
 };
 
-app.use(log);
+// app.use(log);
 
 app.get("/", (req, res) => {
     res.end("server running ,ending ");
 
     app.use(log);
   })
-  .listen(3000);
+app.listen(3000);
+var fake={
+    id:1,
+    name:'arwin',
+    role:'admin'
+}
+var auth=((req,res,next)=>{
+    if(fake.role=='admin'){
+        console.log("authenticated correct user")
+        next()
+    }
+    else{
+        console.log("wrong user");
+        res.send("wrong user")
+    }
+})
+  app.use(auth);
+  app.get("/home",(req,res)=>{
+res.send("working");
+
+})
