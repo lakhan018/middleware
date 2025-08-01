@@ -17,7 +17,7 @@ app.listen(3000);
 var fake={
     id:1,
     name:'arwin',
-    role:'admin'
+    role:'admkin'
 }
 var auth=((req,res,next)=>{
     if(fake.role=='admin'){
@@ -26,7 +26,7 @@ var auth=((req,res,next)=>{
     }
     else{
         console.log("wrong user");
-        res.send("wrong user")
+        res.end("wrong user")
     }
 })
   app.use(auth);
